@@ -48,34 +48,11 @@
 
 ## <img src="https://img.shields.io/badge/CAPTURE-8B5CF6?style=for-the-badge&labelColor=1A1A1A" height="26"/> Capture routes the way setters think
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**AI hold detection**
-A custom neural network runs entirely on your phone and maps the wall in a snap. Any gym, no signal required.
-
-**Real hold roles**
-Mark holds as **start · hand · foot · zone · finish** so your route reads like an actual problem.
-
-**Pinch-zoom precision**
-Zoom and pan while picking holds — built for crowded comp walls.
-
-</td>
-<td width="50%" valign="top">
-
-**Freehand beta drawing**
-Sketch movement lines and annotations straight onto the route photo.
-
-**30 style tags + 8 rule tags**
-Crimps, Slopers, Dyno, Compression, Roof, Slab, Mantle… plus Feet-Follow-Hands, Sit Start, No Matching and more.
-
-**Grades, areas, ratings & projects**
-Full Font scale (5 → 8C), organize by gym, star-rate the classics, flag your projects.
-
-</td>
-</tr>
-</table>
+- **AI hold detection** — a custom neural network runs entirely on your phone and maps the wall in a snap. Any gym, no signal required.
+- **Real hold roles** — mark holds as **start · hand · foot · zone · finish** so your route reads like an actual problem.
+- **Pinch-zoom precision** — zoom and pan while picking holds, built for crowded comp walls.
+- **30 style tags + 8 rule tags** — Crimps, Slopers, Dyno, Compression, Roof, Slab, Mantle… plus Feet-Follow-Hands, Sit Start, No Matching and more.
+- **Grades, areas, ratings & projects** — full Font scale (5 → 8C), organize by gym, star-rate the classics, flag your projects.
 
 ## <img src="https://img.shields.io/badge/BOARDS%20+%20AUTO%20SETTING-8B5CF6?style=for-the-badge&labelColor=1A1A1A" height="26"/> Your home wall. Infinite fresh problems.
 
