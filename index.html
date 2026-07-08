@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BoulderLog — Scan · Pick Holds · Log</title>
+<meta name="description" content="On-device AI climb tracker: scan the wall, pick holds, log your bouldering progress. Logbook, analytics, training engine and route setter in one app. 100% offline, no account, no subscription.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="BoulderLog — Your climbing wall, mapped by AI">
+<meta property="og:description" content="Scan the wall, pick holds, log your sends. On-device AI, 100% offline, no account, no subscription.">
+<meta property="og:url" content="https://jk-hosting.github.io/BoulderLog-App/">
+<meta property="og:image" content="https://jk-hosting.github.io/BoulderLog-App/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="icon.png">
+
+<style>
+  :root {
+    --bg: #17161c;
+    --card: #1f1e26;
+    --purple: #8B5CF6;
+    --cream: #EDE7DC;
+    --gold: #D4B36A;
+    --text: #d6d2dd;
+    --muted: #9b95a6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--purple); text-decoration: none; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* hero */
+  .hero { text-align: center; padding: 72px 0 48px; }
+  .hero img.icon { width: 128px; height: 128px; border-radius: 28px; }
+  .hero h1 { color: var(--cream); font-size: 56px; font-weight: 700; margin-top: 20px; letter-spacing: -1px; }
+  .hero .steps-line { color: var(--purple); font-weight: 600; letter-spacing: 4px; font-size: 16px; margin-top: 2px; }
+  .hero .tagline { font-size: 22px; color: #fff; margin-top: 26px; }
+  .hero .tagline span { color: var(--muted); display: block; font-size: 19px; }
+  .play-btn {
+    display: inline-block; margin-top: 32px; padding: 14px 34px; border-radius: 12px;
+    background: linear-gradient(135deg, #34A853, #1e7e38); color: #fff; font-weight: 600; font-size: 17px;
+  }
+  .play-btn:hover { filter: brightness(1.1); }
+  .pills { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .pill {
+    border: 1.5px solid rgba(139, 92, 246, 0.55); background: #26222f; color: var(--purple);
+    border-radius: 999px; padding: 7px 18px; font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  }
+
+  /* how it works */
+  .how { text-align: center; padding: 44px 0; border-top: 1px solid #2b2933; }
+  .how h2 { color: var(--cream); font-size: 26px; }
+  .how .flow { font-size: 20px; font-weight: 600; color: var(--cream); margin-top: 12px; letter-spacing: 2px; }
+  .how .flow b { color: var(--purple); }
+  .how p { max-width: 720px; margin: 18px auto 0; color: var(--muted); }
+
+  .shots { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; padding: 36px 0; }
+  .shots img { width: 300px; max-width: 90vw; border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+
+  /* sections */
+  section.feature { padding: 56px 0; border-top: 1px solid #2b2933; }
+  .tag {
+    display: inline-block; background: #26222f; color: var(--purple); font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; padding: 6px 16px; border-radius: 8px; margin-bottom: 14px;
+  }
+  section.feature h2 { color: var(--cream); font-size: 30px; font-weight: 700; line-height: 1.25; }
+  section.feature > .wrap > p.lead { color: var(--muted); font-size: 18px; margin-top: 12px; max-width: 760px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin-top: 28px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  .grid2 div { padding: 10px 0; }
+  .grid2 b { color: #fff; display: block; }
+  .grid2 span { color: var(--muted); font-size: 15px; }
+
+  ul.checks { margin: 22px 0 0 2px; list-style: none; }
+  ul.checks li { padding: 6px 0 6px 30px; position: relative; color: var(--text); }
+  ul.checks li::before { content: "▸"; color: var(--purple); position: absolute; left: 6px; }
+  ul.checks b { color: #fff; }
+
+  table.plain { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  table.plain th, table.plain td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #2b2933; }
+  table.plain th { color: var(--purple); font-size: 14px; letter-spacing: 1px; }
+  table.plain td b { color: #fff; }
+  table.plain td { color: var(--muted); }
+
+  .chartgrid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .chartgrid span { background: var(--card); border-radius: 8px; padding: 8px 16px; font-size: 14px; color: var(--text); }
+
+  /* footer */
+  footer { text-align: center; padding: 64px 0 48px; border-top: 1px solid #2b2933; }
+  footer .cta { color: var(--cream); font-size: 26px; font-weight: 700; }
+  footer .gold { color: var(--gold); margin-top: 6px; font-weight: 600; }
+  footer .fine { color: var(--muted); font-size: 13px; margin-top: 34px; }
+  footer .fine a { color: var(--muted); text-decoration: underline; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 30px; }
+  .badges img { height: 28px; }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <img class="icon" src="icon.png" alt="BoulderLog icon">
+  <h1>BoulderLog</h1>
+  <div class="steps-line">SCAN · PICK HOLDS · LOG</div>
+  <p class="tagline">Your climbing wall, mapped by AI. Your progress, made visible.
+    <span>The complete bouldering companion — logbook · analytics · training engine · route setter, in one app.</span>
+  </p>
+  <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.jkhosting.boulderlog">GET IT ON GOOGLE PLAY</a>
+  <div class="pills">
+    <span class="pill">ON-DEVICE AI</span>
+    <span class="pill">100% OFFLINE</span>
+    <span class="pill">NO ACCOUNT</span>
+    <span class="pill">NO SUBSCRIPTION</span>
+  </div>
+</header>
+
+<div class="how">
+  <div class="wrap">
+    <div class="flow"><b>1</b> SCAN &nbsp;→&nbsp; <b>2</b> PICK HOLDS &nbsp;→&nbsp; <b>3</b> LOG</div>
+    <p>Point your camera at the wall and BoulderLog's on-device AI instantly finds every hold — no drawing shapes,
+    no dropping pins, no fiddly editors. Tap the holds in your problem, set the grade, and it's in your logbook.
+    Chalky-fingers friendly · designed for dim gyms · fast enough to use between attempts.</p>
+    <div class="shots">
+      <img src="B5.png" alt="Scan the wall — AI finds every hold in seconds">
+      <img src="B6.png" alt="Every send remembered — grades, tags, attempts and full history per boulder">
+    </div>
+  </div>
+</div>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">CAPTURE</span>
+    <h2>Capture routes the way setters think</h2>
+    <div class="grid2">
+      <div><b>AI hold detection</b><span>A custom neural network runs entirely on your phone and maps the wall in a snap. Any gym, no signal required.</span></div>
+      <div><b>Freehand beta drawing</b><span>Sketch movement lines and annotations straight onto the route photo.</span></div>
+      <div><b>Real hold roles</b><span>Mark holds as start · hand · foot · zone · finish so your route reads like an actual problem.</span></div>
+      <div><b>30 style tags + 8 rule tags</b><span>Crimps, Slopers, Dyno, Compression, Roof, Slab, Mantle… plus Feet-Follow-Hands, Sit Start, No Matching and more.</span></div>
+      <div><b>Pinch-zoom precision</b><span>Zoom and pan while picking holds — built for crowded comp walls.</span></div>
+      <div><b>Grades, areas, ratings &amp; projects</b><span>Full Font scale (5 → 8C), organize by gym, star-rate the classics, flag your projects.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">BOARDS + AUTO SETTING</span>
+    <h2>Your home wall. Infinite fresh problems.</h2>
+    <p class="lead">Turn any spray wall, home woody, or systems board into a digital twin — then let BoulderLog set the routes for you.</p>
+    <div class="shots">
+      <img src="B2.jpg" alt="Manage your boards and routes — AI scanning, hold detection and auto route creation">
+      <img src="B4.jpg" alt="Endless problems — automatic route creation on any board">
+    </div>
+    <ul class="checks">
+      <li><b>Build the board once</b> — photograph it and set the real geometry: width (6–15 ft), height, and wall angle in degrees. Mark the kickboard and height zones, tag each hold's type, orientation and difficulty; the board remembers them forever.</li>
+      <li><b>Generate a brand-new problem with one tap</b> — dial in a target grade, route length and style focus. Linear problems or endurance circuits, with fine control over start pair, start zone, start side and foot rules. Every route is grade-estimated as it's built.</li>
+      <li><b>Routes that actually climb</b> — the generator runs a biomechanical body model, simulating both hands and your center of mass, checking reach at <i>your</i> height and each hold's orientation, so problems move like a human setter built them.</li>
+      <li><b>Whole training sessions, auto-set</b> — generate an entire pyramid session (warmup → build → work → limit) as a stack of fresh routes in a single tap.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">BETA VIDEO</span>
+    <h2>Beta videos, attached to the boulder</h2>
+    <p class="lead">Record or attach beta videos directly to each route. Rewatch your send, study your beta, and back up your entire video library to a single file whenever you want.</p>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">LOGBOOK</span>
+    <h2>A logbook that looks like your climbing</h2>
+    <p class="lead">Every problem is stored with its photo and highlighted holds — flick back through your history and <i>see</i> your climbing, not just a list of numbers.</p>
+    <div class="shots">
+      <img src="B3.jpg" alt="Log and review — all your sends in a complete visual history">
+    </div>
+    <ul class="checks">
+      <li><b>Sends &amp; attempts</b> logged with full date history per route.</li>
+      <li><b>Project tracking</b> keeps your long-term battles front and center until the send.</li>
+      <li><b>Powerful library filters</b> — search plus stackable filters for grade, status, styles, rules, rating, area, and board. Find <i>"all unsent 7A crimp problems at my gym"</i> in two taps.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">ANALYTICS</span>
+    <h2>Thirteen charts. Zero spreadsheets.</h2>
+    <p class="lead">A full analytics dashboard turns your logbook into insight:</p>
+    <div class="chartgrid">
+      <span>The Climbing Pyramid</span><span>Send Distribution</span><span>Sends by Grade</span>
+      <span>Attempts vs Sends</span><span>Monthly Sends</span><span>Monthly Trends by Grade</span>
+      <span>Advanced Metrics</span><span>Performance Trends</span><span>90-Day Consistency</span>
+      <span>Climbing Styles</span><span>Sends by Angle</span><span>Area of Focus</span>
+      <span>Nemesis Boulders — most-attempted, still unsent</span>
+    </div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">TRAINING</span>
+    <h2>A training engine, not just a timer</h2>
+    <p class="lead">Tell BoulderLog your target grade and it builds a structured interval session from your own logged boulders:</p>
+    <table class="plain">
+      <tr><th>PROTOCOL</th><th>WHAT YOU GET</th></tr>
+      <tr><td><b>4×4</b></td><td>The classic power-endurance crusher</td></tr>
+      <tr><td><b>3×3</b></td><td>Shorter blocks, higher intensity</td></tr>
+      <tr><td><b>EMOM</b></td><td>Every minute on the minute</td></tr>
+      <tr><td><b>1-on / 1-off</b></td><td>Relentless minute intervals</td></tr>
+      <tr><td><b>Pyramids</b></td><td>A grade ladder built around your target — up to the peak and back down</td></tr>
+      <tr><td><b>Comp Sim</b></td><td>Simulate a real competition: qualification, semis, or finals format</td></tr>
+    </table>
+    <p class="lead" style="margin-top:22px">The built-in session player runs the show — phase timers, audio cues, pause/skip controls, and a screen that stays awake while you climb — then a review screen to log what you sent.</p>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <span class="tag">PRIVACY</span>
+    <h2>Yours. Offline. Forever.</h2>
+    <ul class="checks">
+      <li><b>Everything stays on your phone</b> — photos, videos, logs, and the AI itself. Nothing is uploaded, ever.</li>
+      <li><b>No account, no cloud, no subscription.</b> Install and climb.</li>
+      <li><b>One-tap full backup</b> — your entire logbook (photos included) exports to a single file; restore on any device.</li>
+      <li><b>Separate video backup</b> to keep archives lean, plus built-in thumbnail repair and cache cleanup.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta">Stop guessing. Start seeing your climbing.</div>
+    <div class="gold">Scan · Pick Holds · Log</div>
+    <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.jkhosting.boulderlog">GET IT ON GOOGLE PLAY</a>
+    <div class="badges">
+      <img src="https://img.shields.io/badge/Expo-54-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo 54">
+      <img src="https://img.shields.io/badge/React%20Native-0.81-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Native 0.81">
+      <img src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript strict">
+      <img src="https://img.shields.io/badge/TensorFlow%20Lite-on--device-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow Lite on-device">
+      <img src="https://img.shields.io/badge/SQLite-local-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite local">
+    </div>
+    <div class="fine">New Architecture · 120fps Reanimated gestures · hand-tuned TFLite vision model on device —
+    because a logging app should never slow down your session.<br><br>
+    <a href="https://github.com/jk-hosting/BoulderLog-App">View on GitHub</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
