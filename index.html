@@ -60,6 +60,21 @@ nav .wrap{display:flex; align-items:center; gap:24px; width:100%}
 .navlinks a:hover{color:var(--ink)}
 .nav-cta{margin-left:8px}
 
+/* APP BAR */
+.appbar{
+  display:flex; justify-content:center; align-items:center; gap:11px; flex-wrap:wrap;
+  padding:9px 24px; font-size:.82rem; color:var(--muted);
+  background:var(--bg2); border-bottom:1px solid var(--line2);
+}
+.appbar .lbl{font-weight:600; letter-spacing:.02em}
+.appbar a{
+  display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--ink);
+  padding:5px 13px; border-radius:999px; background:var(--card); border:1px solid var(--line2);
+  transition:border-color .2s, color .2s;
+}
+.appbar a:hover{border-color:var(--violet); color:var(--violet)}
+.appbar a svg{width:12px; height:12px; opacity:.7}
+
 /* BUTTONS */
 .btn{
   display:inline-flex; align-items:center; gap:9px; font-weight:600; font-size:.98rem;
@@ -198,6 +213,12 @@ footer .copy{color:var(--muted); font-size:.82rem; width:100%; margin-top:8px}
 </style>
 </head>
 <body>
+
+<div class="appbar">
+  <span class="lbl">More from jk-hosting</span>
+  <a href="https://jk-hosting.github.io/BoulderTrain-App/">BoulderTrain<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  <a href="https://jk-hosting.github.io/CoffeeAeye-App/">Coffee Aeye<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
 
 <nav>
   <div class="wrap">
